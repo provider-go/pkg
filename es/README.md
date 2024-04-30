@@ -4,7 +4,7 @@
 
 # 快速开始
 ```
-import es "github.com/provider-go/pyrethrum/pkg/es"
+import es "github.com/provider-go/pkg/es"
 client, err := es.Dial("http://127.0.0.1:9200/")
 if err != nil {
 	fmt.Println(err)

@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
-	proto "github.com/provider-go/pyrethrum/pkg/grpc/pb"
+	proto "github.com/provider-go/pkg/grpc/pb"
 	"os"
 
 	"google.golang.org/grpc"

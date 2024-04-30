@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	proto "github.com/provider-go/pyrethrum/pkg/grpc/pb"
+	proto "github.com/provider-go/pkg/grpc/pb"
 	"net"
 
 	"google.golang.org/grpc"

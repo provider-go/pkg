@@ -1,7 +1,7 @@
 package crypto
 
 import (
-	"github.com/provider-go/pyrethrum/pkg/util/internal"
+	"github.com/provider-go/pkg/util/internal"
 	"testing"
 )
 
