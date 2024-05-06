@@ -65,6 +65,19 @@ func (c *SMCCEtcd) GetService(key string) ([]string, error) {
 	return addrs, nil
 }
 
+func (c *SMCCEtcd) SetConfig(key, value string) error {
+	_, err := c.client.Put(context.Background(), key, value)
+	return err
+}
+
+func (c *SMCCEtcd) GetConfig(key string) (string, error) {
+	resp, err := c.client.Get(context.Background(), key)
+	if err != nil {
+		return "", err
+	}
+	return string(resp.Kvs[0].Value), nil
+}
+
 // extractAddrs 提取地址
 func extractAddrs(resp *clientv3.GetResponse) []string {
 	addrs := make([]string, 0)
