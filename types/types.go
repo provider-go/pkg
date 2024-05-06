@@ -1,4 +1,4 @@
-package global
+package types
 
 import (
 	"github.com/provider-go/pkg/cache"
