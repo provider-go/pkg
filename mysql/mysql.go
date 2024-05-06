@@ -18,7 +18,7 @@ func NewMysql(cfg typemysql.ConfigMysql) (*gorm.DB, error) {
 			LogLevel:                  logger.Info, // Log level
 			Colorful:                  true,        // 禁用彩色打印
 			IgnoreRecordNotFoundError: true,        // 忽略记录不存在的错误
-			ParameterizedQueries:      true,        // SQL日志中包含params
+			ParameterizedQueries:      false,       // SQL日志中不包含params
 		},
 	)
 	db, err := gorm.Open(mysql.Open(cfg.Dsn), &gorm.Config{
