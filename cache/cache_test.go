@@ -12,7 +12,7 @@ func TestName(t *testing.T) {
 		DB:       0,
 	}
 
-	cache := NewCache("redis", c)
+	cache, _ := NewCache("redis", c)
 	cache.Set("xm", "biwow")
 	key := cache.Get("xm")
 	t.Log(key)

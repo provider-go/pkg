@@ -11,7 +11,7 @@ func TestName(t *testing.T) {
 		Endpoints:   []string{"192.168.0.103:2379"},
 		DialTimeout: time.Second * 5,
 	}
-	s := NewSMCC("etcd", c)
+	s, _ := NewSMCC("etcd", c)
 	err := s.RegisterService("xm", "qiqi")
 	if err != nil {
 		t.Log(err)

@@ -10,7 +10,7 @@ type CacheRedis struct {
 	db *redis.Client // 数据库句柄
 }
 
-func NewCacheRedis(cfg typecache.ConfigCache) *CacheRedis {
+func NewCacheRedis(cfg typecache.ConfigCache) (*CacheRedis, error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     cfg.Addr,
 		Password: cfg.Password,
@@ -19,10 +19,9 @@ func NewCacheRedis(cfg typecache.ConfigCache) *CacheRedis {
 
 	_, err := client.Ping().Result()
 	if err != nil {
-		logger.Error("redis:", "step", "NewCacheRedis", "err", err)
-		return nil
+		return nil, err
 	}
-	return &CacheRedis{db: client}
+	return &CacheRedis{db: client}, nil
 }
 
 // Set 写入数据

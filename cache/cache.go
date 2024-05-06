@@ -11,7 +11,7 @@ type Cache interface {
 	Del(key string)
 }
 
-func NewCache(provider string, cfg typecache.ConfigCache) Cache {
+func NewCache(provider string, cfg typecache.ConfigCache) (Cache, error) {
 	switch provider {
 	case "redis":
 		return redis.NewCacheRedis(cfg)

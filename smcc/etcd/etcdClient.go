@@ -12,7 +12,7 @@ type SMCCEtcd struct {
 }
 
 // NewSMCCEtcd 创建etcd链接
-func NewSMCCEtcd(cfg typesmcc.ConfigSMCC) *SMCCEtcd {
+func NewSMCCEtcd(cfg typesmcc.ConfigSMCC) (*SMCCEtcd, error) {
 	conf := clientv3.Config{
 		Endpoints:   cfg.Endpoints,
 		DialTimeout: cfg.DialTimeout,
@@ -20,10 +20,10 @@ func NewSMCCEtcd(cfg typesmcc.ConfigSMCC) *SMCCEtcd {
 	if client, err := clientv3.New(conf); err == nil {
 		return &SMCCEtcd{
 			client: client,
-		}
+		}, nil
 	} else {
 		logger.Error("SMCCEtcd", "step", "NewSMCCEtcd", "err", err)
-		return nil
+		return nil, err
 	}
 }
 

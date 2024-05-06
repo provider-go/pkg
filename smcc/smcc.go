@@ -10,7 +10,7 @@ type SMCC interface {
 	GetService(key string) ([]string, error)
 }
 
-func NewSMCC(provider string, cfg typesmcc.ConfigSMCC) SMCC {
+func NewSMCC(provider string, cfg typesmcc.ConfigSMCC) (SMCC, error) {
 	switch provider {
 	case "etcd":
 		return etcd.NewSMCCEtcd(cfg)
