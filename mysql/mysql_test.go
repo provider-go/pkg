@@ -1,4 +1,4 @@
-package models
+package mysql
 
 import (
 	"github.com/provider-go/pkg/mysql/typemysql"
