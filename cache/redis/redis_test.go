@@ -1,4 +1,4 @@
-package redis
+package rediscache
 
 import (
 	"github.com/provider-go/pkg/cache/typecache"
@@ -11,7 +11,7 @@ func TestName(t *testing.T) {
 		Password: "123456",
 		DB:       0,
 	}
-	client := NewCacheRedis(c)
+	client, _ := NewCacheRedis(c)
 	client.Set("15101131912", "6666")
 	t.Log(client.Get("15101131912"))
 	client.Del("15101131912")

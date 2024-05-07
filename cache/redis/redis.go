@@ -1,4 +1,4 @@
-package redis
+package rediscache
 
 import (
 	"github.com/go-redis/redis"

@@ -1,7 +1,9 @@
 package cache
 
 import (
-	"github.com/provider-go/pkg/cache/redis"
+	leveldbcache "github.com/provider-go/pkg/cache/leveldb"
+	memorycache "github.com/provider-go/pkg/cache/memory"
+	rediscache "github.com/provider-go/pkg/cache/redis"
 	"github.com/provider-go/pkg/cache/typecache"
 )
 
@@ -14,9 +16,13 @@ type Cache interface {
 func NewCache(provider string, cfg typecache.ConfigCache) (Cache, error) {
 	switch provider {
 	case "redis":
-		return redis.NewCacheRedis(cfg)
+		return rediscache.NewCacheRedis(cfg)
+	case "level":
+		return leveldbcache.NewCacheLevelDB(cfg)
+	case "memory":
+		return memorycache.NewCacheMemory(cfg)
 	default:
 
-		return redis.NewCacheRedis(cfg)
+		return rediscache.NewCacheRedis(cfg)
 	}
 }
