@@ -5,10 +5,11 @@ import (
 	memorycache "github.com/provider-go/pkg/cache/memory"
 	rediscache "github.com/provider-go/pkg/cache/redis"
 	"github.com/provider-go/pkg/cache/typecache"
+	"time"
 )
 
 type Cache interface {
-	Set(key, value string)
+	Set(key, value string, expiration time.Duration)
 	Get(key string) string
 	Del(key string)
 }

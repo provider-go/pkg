@@ -7,6 +7,7 @@ import (
 	"github.com/syndtr/goleveldb/leveldb/filter"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 	"github.com/syndtr/goleveldb/leveldb/opt"
+	"time"
 )
 
 type CacheLevelDB struct {
@@ -33,7 +34,7 @@ func NewCacheLevelDB(cfg typecache.ConfigCache) (*CacheLevelDB, error) {
 }
 
 // Set 数据库写操作
-func (db *CacheLevelDB) Set(key, value string) {
+func (db *CacheLevelDB) Set(key, value string, expiration time.Duration) {
 	_ = db.db.Put([]byte(key), []byte(value), nil)
 }
 

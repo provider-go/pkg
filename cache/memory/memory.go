@@ -3,6 +3,7 @@ package memorycache
 import (
 	"github.com/provider-go/pkg/cache/typecache"
 	"sync"
+	"time"
 )
 
 // 结构体
@@ -19,7 +20,7 @@ func NewCacheMemory(cfg typecache.ConfigCache) (*CacheMemoryDB, error) {
 }
 
 // Set 写方法
-func (db *CacheMemoryDB) Set(key, value string) {
+func (db *CacheMemoryDB) Set(key, value string, expiration time.Duration) {
 	db.lock.Lock()
 	db.db[key] = value
 	db.lock.Unlock()

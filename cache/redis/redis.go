@@ -4,6 +4,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/provider-go/pkg/cache/typecache"
 	"github.com/provider-go/pkg/logger"
+	"time"
 )
 
 type CacheRedis struct {
@@ -25,8 +26,8 @@ func NewCacheRedis(cfg typecache.ConfigCache) (*CacheRedis, error) {
 }
 
 // Set 写入数据
-func (r *CacheRedis) Set(key, value string) {
-	r.db.Set(key, value, 0)
+func (r *CacheRedis) Set(key, value string, expiration time.Duration) {
+	r.db.Set(key, value, time.Second*expiration)
 }
 
 // Get 读数据

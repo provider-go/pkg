@@ -3,6 +3,7 @@ package cache
 import (
 	"github.com/provider-go/pkg/cache/typecache"
 	"testing"
+	"time"
 )
 
 func TestName(t *testing.T) {
@@ -13,7 +14,10 @@ func TestName(t *testing.T) {
 	}
 
 	cache, _ := NewCache("redis", c)
-	cache.Set("xm", "biwow")
+	cache.Set("xm", "biwow", 3)
 	key := cache.Get("xm")
+	t.Log(key)
+	time.Sleep(3 * time.Second)
+	key = cache.Get("xm")
 	t.Log(key)
 }
