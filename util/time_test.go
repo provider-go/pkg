@@ -77,3 +77,8 @@ func Test_GetStringToFormatUnix(t *testing.T) {
 func TestGetUnixFormatDate(t *testing.T) {
 	t.Log(GetUnixFormatDate(time.Now().Unix()))
 }
+
+func TestUTCToStandardTime(t *testing.T) {
+	a := UTCToStandardTime("2024-05-09T21:11:19.461+08:00")
+	t.Log(a)
+}

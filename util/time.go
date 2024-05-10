@@ -123,3 +123,8 @@ func GetUnixFormatDate(unixTime int64) string {
 	stamp := time.Unix(unixTime, 0)
 	return stamp.Format("2006-01-02 15:04:05")
 }
+
+func UTCToStandardTime(utcTime string) string {
+	s, _ := time.ParseInLocation("2006-01-02T15:04:05+08:00", utcTime, time.Local)
+	return s.Format("2006-01-02 15:04:05")
+}
