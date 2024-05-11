@@ -5,7 +5,9 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"io"
+	mathrand "math/rand"
 	"strings"
+	"time"
 )
 
 // GetRandString 随机生成N位字符串
@@ -16,6 +18,13 @@ func GetRandString(n int) string {
 		panic("reading from crypto/rand failed: " + err.Error())
 	}
 	return hex.EncodeToString(mainBuff)[:n]
+}
+
+// GeFourRandInt 随机生成4位数字
+func GeFourRandInt() int {
+	mathrand.Seed(time.Now().UnixNano())
+	randNumber := mathrand.Intn(8999) + 1000
+	return randNumber
 }
 
 // GetMd5String 生成32位md5字串
