@@ -26,7 +26,7 @@ const (
 	LevelTrace                // 用户级基本输出
 )
 
-// 日志等级和描述映射关系
+// LevelMap 日志等级和描述映射关系
 var LevelMap = map[string]int{
 	"EMER": LevelEmergency,
 	"ALRT": LevelAlert,
@@ -61,14 +61,14 @@ const (
 	AdapterElastic       = "elastic"             // elastic输出配置项
 )
 
-// log provider interface
+// Logger log provider interface
 type Logger interface {
 	Init(config string) error
 	LogWrite(when time.Time, msg interface{}, level int) error
 	Destroy()
 }
 
-// 日志输出适配器注册，log需要实现Init，LogWrite，Destroy方法
+// Register 日志输出适配器注册，log需要实现Init，LogWrite，Destroy方法
 func Register(name string, log Logger) {
 	if log == nil {
 		panic("logs: Register provide is nil")
@@ -496,14 +496,14 @@ func formatLog(f interface{}, v ...interface{}) string {
 		if strings.Contains(msg, "%") && !strings.Contains(msg, "%%") {
 			//format string
 		} else if len(v) == 1 {
-			return fmt.Sprintf("%v%v", strSpecifiedLength(f, 50), v[0])
+			return fmt.Sprintf("%v%v", strSpecifiedLength(f, 30), v[0])
 			//return fmt.Sprintf("%v %v", f, v[0])
 		} else {
 			str := ""
 			for key, val := range v {
 				if key%2 == 0 {
 					if key < lenArgs-1 {
-						str += fmt.Sprintf("%v=", val)
+						str += fmt.Sprintf("%v = ", val)
 					} else {
 						str += fmt.Sprintf("%v ", val)
 					}
@@ -511,7 +511,7 @@ func formatLog(f interface{}, v ...interface{}) string {
 					str += fmt.Sprintf("%v ", val)
 				}
 			}
-			msg = fmt.Sprintf("%v%v", strSpecifiedLength(msg, 50), strings.TrimSpace(str))
+			msg = fmt.Sprintf("%v%v", strSpecifiedLength(msg, 30), strings.TrimSpace(str))
 			//msg = fmt.Sprintf("%v          %v", msg, strings.TrimSpace(str))
 		}
 	default:
@@ -519,14 +519,14 @@ func formatLog(f interface{}, v ...interface{}) string {
 		if len(v) == 0 {
 			return msg
 		} else if len(v) == 1 {
-			return fmt.Sprintf("%v%v", strSpecifiedLength(f, 50), v[0])
+			return fmt.Sprintf("%v%v", strSpecifiedLength(f, 30), v[0])
 			//return fmt.Sprintf("%v %v", f, v[0])
 		} else {
 			str := ""
 			for key, val := range v {
 				if key%2 == 0 {
 					if key < lenArgs-1 {
-						str += fmt.Sprintf("%v=", val)
+						str += fmt.Sprintf("%v = ", val)
 					} else {
 						str += fmt.Sprintf("%v ", val)
 					}
@@ -534,7 +534,7 @@ func formatLog(f interface{}, v ...interface{}) string {
 					str += fmt.Sprintf("%v ", val)
 				}
 			}
-			return fmt.Sprintf("%v%v", strSpecifiedLength(msg, 50), strings.TrimSpace(str))
+			return fmt.Sprintf("%v%v", strSpecifiedLength(msg, 30), strings.TrimSpace(str))
 			//return fmt.Sprintf("%v          %v", msg, strings.TrimSpace(str))
 		}
 	}
