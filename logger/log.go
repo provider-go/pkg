@@ -503,7 +503,7 @@ func formatLog(f interface{}, v ...interface{}) string {
 			for key, val := range v {
 				if key%2 == 0 {
 					if key < lenArgs-1 {
-						str += fmt.Sprintf("%v = ", val)
+						str += fmt.Sprintf("%v => ", val)
 					} else {
 						str += fmt.Sprintf("%v ", val)
 					}
@@ -526,7 +526,7 @@ func formatLog(f interface{}, v ...interface{}) string {
 			for key, val := range v {
 				if key%2 == 0 {
 					if key < lenArgs-1 {
-						str += fmt.Sprintf("%v = ", val)
+						str += fmt.Sprintf("%v => ", val)
 					} else {
 						str += fmt.Sprintf("%v ", val)
 					}
