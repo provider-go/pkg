@@ -12,7 +12,7 @@ type LocalRPC interface {
 
 func NewLocalRPC(provider string, cfg typerpc.ConfigRPC) LocalRPC {
 	switch provider {
-	case "ali":
+	case "local":
 		return local.NewLocal(cfg)
 	default:
 

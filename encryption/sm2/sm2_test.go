@@ -1,9 +1,25 @@
+/*
+Copyright Suzhou Tongji Fintech Research Institute 2017 All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+                 http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package sm2
 
 import (
 	"bytes"
 	"crypto/rand"
 	"fmt"
+	"io/ioutil"
 	"math/big"
 	"os"
 	"testing"
@@ -40,17 +56,17 @@ func TestSm2(t *testing.T) {
 		fmt.Printf("Error: failed to decrypt: %v\n", err)
 	}
 	fmt.Printf("clear text = %s\n", d3)
-	msg, _ = os.ReadFile("ifile")                 // 从文件读取数据
+	msg, _ = ioutil.ReadFile("ifile")             // 从文件读取数据
 	sign, err := priv.Sign(rand.Reader, msg, nil) // 签名
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = os.WriteFile("TestResult", sign, os.FileMode(0644))
+	err = ioutil.WriteFile("TestResult", sign, os.FileMode(0644))
 	if err != nil {
 		t.Fatal(err)
 	}
-	signdata, _ := os.ReadFile("TestResult")
+	signdata, _ := ioutil.ReadFile("TestResult")
 	ok := priv.Verify(msg, signdata) // 密钥验证
 	if ok != true {
 		fmt.Printf("Verify error\n")
